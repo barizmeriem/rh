@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AutorisationAbsenceViewDlg" widgetVar="AutorisationAbsenceViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAutorisationAbsenceTitle}">
+            <h:form id="AutorisationAbsenceViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{autorisationAbsenceController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_id}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.id}" title="#{bundle.ViewAutorisationAbsenceTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_valide}"/>
+                        <p:selectBooleanCheckbox value="#{autorisationAbsenceController.selected.valide}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_dateValidation}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.dateValidation}" title="#{bundle.ViewAutorisationAbsenceTitle_dateValidation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_dateDebut}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.dateDebut}" title="#{bundle.ViewAutorisationAbsenceTitle_dateDebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_dateFin}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.dateFin}" title="#{bundle.ViewAutorisationAbsenceTitle_dateFin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_dateEnvoi}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.dateEnvoi}" title="#{bundle.ViewAutorisationAbsenceTitle_dateEnvoi}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_entiteValidation}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.entiteValidation}" title="#{bundle.ViewAutorisationAbsenceTitle_entiteValidation}"/>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_employee}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.employee}" title="#{bundle.ViewAutorisationAbsenceTitle_employee}"/>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_motif}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.motif}" title="#{bundle.ViewAutorisationAbsenceTitle_motif}"/>
+                        <h:outputText value="#{bundle.ViewAutorisationAbsenceLabel_nbrHeures}"/>
+                        <h:outputText value="#{autorisationAbsenceController.selected.nbrHeures}" title="#{bundle.ViewAutorisationAbsenceTitle_nbrHeures}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AutorisationAbsenceViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

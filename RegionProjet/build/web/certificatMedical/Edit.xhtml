@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CertificatMedicalEditDlg" widgetVar="CertificatMedicalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCertificatMedicalTitle}">
+            <h:form id="CertificatMedicalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{certificatMedicalController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCertificatMedicalLabel_personne}" for="personne" />
+                        <p:selectOneMenu id="personne" value="#{certificatMedicalController.selected.personne}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personneController.itemsAvailableSelectOne}"
+                                           var="personneItem"
+                                           itemValue="#{personneItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCertificatMedicalLabel_nbrJours}" for="nbrJours" />
+                        <p:inputText id="nbrJours" value="#{certificatMedicalController.selected.nbrJours}" title="#{bundle.EditCertificatMedicalTitle_nbrJours}" />
+                        <p:outputLabel value="#{bundle.EditCertificatMedicalLabel_nomPiece}" for="nomPiece" />
+                        <p:inputText id="nomPiece" value="#{certificatMedicalController.selected.nomPiece}" title="#{bundle.EditCertificatMedicalTitle_nomPiece}" />
+                        <p:outputLabel value="#{bundle.EditCertificatMedicalLabel_dateDebut}" for="dateDebut" />
+                        <p:calendar id="dateDebut" pattern="MM/dd/yyyy" value="#{certificatMedicalController.selected.dateDebut}" title="#{bundle.EditCertificatMedicalTitle_dateDebut}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCertificatMedicalLabel_dateFin}" for="dateFin" />
+                        <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{certificatMedicalController.selected.dateFin}" title="#{bundle.EditCertificatMedicalTitle_dateFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCertificatMedicalLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{certificatMedicalController.selected.id}" title="#{bundle.EditCertificatMedicalTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{certificatMedicalController.update}" value="#{bundle.Save}" update="display,:CertificatMedicalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CertificatMedicalEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CertificatMedicalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

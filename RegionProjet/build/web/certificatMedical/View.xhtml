@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CertificatMedicalViewDlg" widgetVar="CertificatMedicalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCertificatMedicalTitle}">
+            <h:form id="CertificatMedicalViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{certificatMedicalController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCertificatMedicalLabel_personne}"/>
+                        <h:outputText value="#{certificatMedicalController.selected.personne}" title="#{bundle.ViewCertificatMedicalTitle_personne}"/>
+                        <h:outputText value="#{bundle.ViewCertificatMedicalLabel_nbrJours}"/>
+                        <h:outputText value="#{certificatMedicalController.selected.nbrJours}" title="#{bundle.ViewCertificatMedicalTitle_nbrJours}"/>
+                        <h:outputText value="#{bundle.ViewCertificatMedicalLabel_nomPiece}"/>
+                        <h:outputText value="#{certificatMedicalController.selected.nomPiece}" title="#{bundle.ViewCertificatMedicalTitle_nomPiece}"/>
+                        <h:outputText value="#{bundle.ViewCertificatMedicalLabel_dateDebut}"/>
+                        <h:outputText value="#{certificatMedicalController.selected.dateDebut}" title="#{bundle.ViewCertificatMedicalTitle_dateDebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCertificatMedicalLabel_dateFin}"/>
+                        <h:outputText value="#{certificatMedicalController.selected.dateFin}" title="#{bundle.ViewCertificatMedicalTitle_dateFin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCertificatMedicalLabel_id}"/>
+                        <h:outputText value="#{certificatMedicalController.selected.id}" title="#{bundle.ViewCertificatMedicalTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CertificatMedicalViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

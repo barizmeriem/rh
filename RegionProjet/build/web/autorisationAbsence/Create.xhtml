@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AutorisationAbsenceCreateDlg" widgetVar="AutorisationAbsenceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAutorisationAbsenceTitle}">
+            <h:form id="AutorisationAbsenceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{autorisationAbsenceController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{autorisationAbsenceController.selected.id}" title="#{bundle.CreateAutorisationAbsenceTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_valide}" for="valide" />
+                        <p:selectBooleanCheckbox id="valide" value="#{autorisationAbsenceController.selected.valide}" />
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_dateValidation}" for="dateValidation" />
+                        <p:calendar id="dateValidation" pattern="MM/dd/yyyy" value="#{autorisationAbsenceController.selected.dateValidation}" title="#{bundle.EditAutorisationAbsenceTitle_dateValidation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_dateDebut}" for="dateDebut" />
+                        <p:calendar id="dateDebut" pattern="MM/dd/yyyy" value="#{autorisationAbsenceController.selected.dateDebut}" title="#{bundle.EditAutorisationAbsenceTitle_dateDebut}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_dateFin}" for="dateFin" />
+                        <p:calendar id="dateFin" pattern="MM/dd/yyyy" value="#{autorisationAbsenceController.selected.dateFin}" title="#{bundle.EditAutorisationAbsenceTitle_dateFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_dateEnvoi}" for="dateEnvoi" />
+                        <p:calendar id="dateEnvoi" pattern="MM/dd/yyyy" value="#{autorisationAbsenceController.selected.dateEnvoi}" title="#{bundle.EditAutorisationAbsenceTitle_dateEnvoi}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_entiteValidation}" for="entiteValidation" />
+                        <p:selectOneMenu id="entiteValidation" value="#{autorisationAbsenceController.selected.entiteValidation}" >
+                            <f:selectItems value="#{entiteAdministrativeController.itemsAvailableSelectOne}"
+                                           var="entiteValidationItem"
+                                           itemValue="#{entiteValidationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_employee}" for="employee" />
+                        <p:selectOneMenu id="employee" value="#{autorisationAbsenceController.selected.employee}" >
+                            <f:selectItems value="#{personneController.itemsAvailableSelectOne}"
+                                           var="employeeItem"
+                                           itemValue="#{employeeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_motif}" for="motif" />
+                        <p:inputText id="motif" value="#{autorisationAbsenceController.selected.motif}" title="#{bundle.CreateAutorisationAbsenceTitle_motif}" />
+                        <p:outputLabel value="#{bundle.CreateAutorisationAbsenceLabel_nbrHeures}" for="nbrHeures" />
+                        <p:inputText id="nbrHeures" value="#{autorisationAbsenceController.selected.nbrHeures}" title="#{bundle.CreateAutorisationAbsenceTitle_nbrHeures}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{autorisationAbsenceController.create}" value="#{bundle.Save}" update="display,:AutorisationAbsenceListForm:datalist,:growl" oncomplete="handleSubmit(args,'AutorisationAbsenceCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AutorisationAbsenceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
